@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Lista de checkboxs</title>
+  </head>
+  <body style="display: flex; flex-direction: column">
+    <label>
+      <input
+        type="checkbox"
+        name="teste[0].Checked"
+        id="teste_0__Checked"
+        class="checkboxs"
+      />
+      <input type="hidden" name="teste[0].Id" id="teste_0__Id" value="1" />
+      Teste 0
+    </label>
+    <label>
+      <input
+        type="checkbox"
+        name="teste[1].Checked"
+        id="teste_1__Checked"
+        class="checkboxs"
+      />
+      <input type="hidden" name="teste[1].Id" id="teste_1__Id" value="2" />
+      Teste 1
+    </label>
+    <label>
+      <input
+        type="checkbox"
+        name="teste[2].Checked"
+        id="teste_2__Checked"
+        class="checkboxs"
+      />
+      <input type="hidden" name="teste[2].Id" id="teste_2__Id" value="3" />
+      Teste 2
+    </label>
+    <label>
+      <input
+        type="checkbox"
+        name="teste[3].Checked"
+        id="teste_3__Checked"
+        class="checkboxs"
+      />
+      <input type="hidden" name="teste[3].Id" id="teste_3__Id" value="4" />
+      Teste 3
+    </label>
+    <label>
+      <input
+        type="checkbox"
+        name="teste[4].Checked"
+        id="teste_4__Checked"
+        class="checkboxs"
+      />
+      <input type="hidden" name="teste[4].Id" id="teste_4__Id" value="5" />
+      Teste 4
+    </label>
+    <label>
+      <input
+        type="checkbox"
+        name="teste[5].Checked"
+        id="teste_5__Checked"
+        class="checkboxs"
+      />
+      <input type="hidden" name="teste[5].Id" id="teste_5__Id" value="6" />
+      Teste 5
+    </label>
+    <label>
+      <input
+        type="checkbox"
+        name="teste[6].Checked"
+        id="teste_6__Checked"
+        class="checkboxs"
+      />
+      <input type="hidden" name="teste[6].Id" id="teste_6__Id" value="7" />
+      Teste 6
+    </label>
+    <label>
+      <input
+        type="checkbox"
+        name="teste[7].Checked"
+        id="teste_7__Checked"
+        class="checkboxs"
+      />
+      <input type="hidden" name="teste[7].Id" id="teste_7__Id" value="8" />
+      Teste 7
+    </label>
+
+    <script>
+      const $listaCheckbox = document.querySelectorAll(".checkboxs");
+
+      $listaCheckbox.forEach((checkbox) => {
+        checkbox.addEventListener("change", filtrarCheckboxesMarcados);
+      });
+
+      function filtrarCheckboxesMarcados() {
+        const arr = [...$listaCheckbox]
+          .filter((checkbox) => checkbox.checked)
+          .map((checkbox) => buscarValorCampoOculto(checkbox.name))
+          .filter(Boolean);
+
+        console.log(arr);
+      }
+
+      function buscarValorCampoOculto(elementoNome) {
+        const name = elementoNome.replace(".Checked", ".Id");
+        const $input = document.querySelector(`input[name='${name}`);
+        return $input ? $input.value : null;
+      }
+    </script>
+  </body>
+</html>
